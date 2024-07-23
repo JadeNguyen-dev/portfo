@@ -35,7 +35,11 @@ def submit_form():
     # was GET or the credentials were invalid
     if request.method == 'POST':
         try:
-
+            data = request.form.to_dict()
+            write_to_csv(data)
+            return redirect('/thankyou.html')
+        except:
+            return "did not save data to database"
     return 'something wrong happened'
 
 
